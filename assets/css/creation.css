@@ -1,0 +1,121 @@
+body{
+    background-color: white;
+}
+#logo{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+header{
+    padding-top: -20px !important;
+}
+header div div div button{
+    background-color: #D4AF37 !important;
+    border: none !important;
+    color: white !important;
+}
+
+#header header ul li a{
+    color:#D4AF37;
+}
+footer{
+    margin-top: 5%;
+    border-top: 1px solid #D4AF37;
+}
+footer div div img{
+    width: 80%;
+    height:80%;
+    margin-top:-20%;
+    object-fit: contain;
+}
+
+#header .btn-outline-primary {
+    color: #D4AF37 !important;
+    border-color: #D4AF37 !important;
+    background-color: transparent !important;
+}
+
+#header .btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #D4AF37 !important;
+    border-color: #D4AF37 !important;
+}
+
+#header .btn-primary {
+    color: #fff !important;
+    background-color: #D4AF37 !important;
+    border-color: #D4AF37 !important;
+}
+
+#header .btn-primary:hover {
+    color: #fff !important;
+    background-color: #B8941F !important;
+    border-color: #B8941F !important;
+}
+.container div div h3{
+    color: white;
+}
+h1,h3{
+    text-align: center;
+}
+.creationgallery div{
+    text-align: center;
+}
+.creationgallery div h5{
+    margin: 5%;
+}
+.creationgallery .gallery div div{
+    width:25%;
+    margin-bottom: 3%;
+}
+.creationgallery .gallery div div img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+.categorychoice{
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: flex-end;
+}
+.categorychoice div button{
+    background-color: rgba(212, 175, 55,0.8);
+    border: none;
+}
+.product{
+    margin-bottom: 5%;
+}
+.product div div h3{
+    color: #D4AF37;
+    margin-top: 15%;
+}
+.product div div h6{
+    color: black;
+    margin-top: 5%;
+}
+.product div div p{
+   text-align: center;
+}
+.product div div div div div div div div button{
+   border-color: #D4AF37;
+   color: black;
+}
+.product div div div div div div div div button:hover{
+    background-color: #D4AF37;
+    border: none;
+    color: white;
+ }
+ .map{
+    margin-top: 5%;
+    text-align: center;
+}
+.map h2{
+    margin-top: 25%;
+    color: #D4AF37;
+    margin-bottom: 3%;
+}
+.map div div img{
+    width:auto;
+    height: 500px;
+    object-fit: cover;
+}

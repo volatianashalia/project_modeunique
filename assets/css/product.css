@@ -1,0 +1,86 @@
+.creationgallery {
+    text-align: center;
+}
+
+.creationgallery div h5{
+    margin: 5%;
+}
+
+.creationgallery .gallery div div{
+    width:25%;
+    margin-bottom: 3%;
+}
+
+.creationgallery .gallery div div img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.categorychoice{
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.categorychoice div button{
+    background-color: rgba(212, 175, 55,0.8);
+    border: none;
+}
+
+.product{
+    margin-left: 7%;
+    display: flex;
+    justify-content: center;
+}
+
+.product div div div div div button{
+    background-color: white;
+    color: #D4AF37;
+    border-color: #D4AF37;
+}
+
+.product div div div div div button a{
+    text-decoration: none;
+    color: #D4AF37;
+}
+
+.product div div div div div button:hover{
+    background-color: #D4AF37;
+    color: white ;
+    border-color: #D4AF37;
+}
+
+.product div div div div div button a:hover{
+    color: white ;
+}
+
+ .map{
+    margin-top: 5%;
+    text-align: center;
+}
+
+.map h2{
+    margin-top: 25%;
+    color: #D4AF37;
+    margin-bottom: 3%;
+}
+
+.map div div img{
+    width:auto;
+    height: 500px;
+    object-fit: cover;
+}
+#logo{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+header{
+    padding-top: -20px !important;
+}
+header div div div button{
+    background-color: #D4AF37 !important;
+    border: none !important;
+    color: white !important;
+}
