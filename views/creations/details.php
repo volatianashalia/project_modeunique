@@ -1,6 +1,6 @@
 <?php
-require_once '../../config/DB.php';
-require_once '../../config/functions.php';
+require_once __DIR__ '../../config/DB.php';
+require_once __DIR__'../../config/functions.php';
 $creation_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $creation = null;
 
@@ -14,7 +14,7 @@ if ($creation_id > 0) {
     }
 }
 
-require_once('../layouts/header.php'); ?>
+require_once __DIR__'../layouts/header.php'; ?>
 
 <div class="container" style="margin-top: 50px;">
     <?php if (!empty($creation)): ?>
@@ -34,4 +34,4 @@ require_once('../layouts/header.php'); ?>
     <?php endif; ?>
 </div>
 
-<?php include_once('../layouts/footer.php'); ?>
+<?php require_once __DIR__'../layouts/footer.php'; ?>
