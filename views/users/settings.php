@@ -1,14 +1,11 @@
-
 <?php 
-require_once('../layouts/header.php'); 
+require_once __DIR__'../layouts/header.php'; 
 
-// 1. Vérifier si l'utilisateur est connecté
 if (!is_logged_in()) {
     header('Location: ../login.php?redirect=settings');
     exit();
 }
 
-// 2. Récupérer les informations de l'utilisateur pour pré-remplir le formulaire
 $user = null;
 try {
     $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
@@ -68,4 +65,4 @@ try {
     <?php endif; ?>
 </div>
 
-<?php include_once('../layouts/footer.php'); ?>
+<?php require_once __DIR__'../layouts/footer.php'; ?>
