@@ -1,14 +1,13 @@
 <?php
 session_start();
-require_once '../../config/DB.php';
+require_once __DIR__ '../../config/DB.php';
 
-// 1. Vérifier si l'utilisateur est connecté
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../login.php');
     exit();
 }
 
-// 2. Vérifier que la méthode est POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: add_review.php');
     exit();
@@ -20,7 +19,7 @@ $review_text = trim(filter_input(INPUT_POST, 'review_text', FILTER_SANITIZE_SPEC
 
 $errors = [];
 
-// 3. Valider les données
+
 if (!$rating || $rating < 1 || $rating > 5) {
     $errors[] = "Veuillez sélectionner une note valide.";
 }
@@ -37,7 +36,7 @@ if (!empty($errors)) {
     exit();
 }
 
-// 4. Insérer dans la base de données
+
 try {
     $stmt = $pdo->prepare("INSERT INTO reviews (user_id, rating, review_text) VALUES (?, ?, ?)");
     $stmt->execute([$user_id, $rating, $review_text]);
