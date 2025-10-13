@@ -4,7 +4,7 @@ require_once __DIR__ .'/../../config/auth.php';
 if (!is_logged_in()) {
     header('Location: /ModeUnique/views/login.php?redirect_url=/ModeUnique/views/appointments/book.php&notice=login_required_for_booking');
 }
-require_once ('../layouts/header.php');
+require_once __DIR__ '../layouts/header.php';
 $user_full_name = htmlspecialchars($_SESSION['first_name'] ?? '') . ' ' . htmlspecialchars($_SESSION['last_name'] ?? '');
 $user_email = htmlspecialchars($_SESSION['email'] ?? '');
 ?>
@@ -107,7 +107,7 @@ $user_email = htmlspecialchars($_SESSION['email'] ?? '');
             <button id="closeModal" class="close-btn">Fermer</button>
         </div>
     </div>
-    <?php include_once ('../layouts/footer.php')?>
+    <?php require_once __DIR__'../layouts/footer.php'?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
      <script src="../../assets/js/book.js"></script>  
 </body>
