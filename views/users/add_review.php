@@ -2,13 +2,11 @@
 session_start();
 require_once __DIR__'../layouts/header.php';
 
-// Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../login.php?redirect=add_review');
     exit();
 }
 
-// Récupérer les messages d'erreur ou de succès
 $errors = $_SESSION['review_errors'] ?? [];
 $success = $_SESSION['review_success'] ?? null;
 unset($_SESSION['review_errors'], $_SESSION['review_success']);
