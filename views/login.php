@@ -1,7 +1,7 @@
 <?php
-require_once '../config/DB.php';
-require_once '../config/auth.php';
-require_once '../config/functions.php';
+require_once __DIR__'../config/DB.php';
+require_once __DIR__ '../config/auth.php';
+require_once __DIR__ '../config/functions.php';
 if(is_logged_in()) {
     if($_SESSION['role'] === 'admin') {
         header('Location: users/admin.php');
