@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../config/DB.php';
+require_once __DIR__ '../../config/DB.php';
 if (!isset($_SESSION['user_id'])) {
     $product_id_for_redirect = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT);
     header('Location: ../../views/login.php?error=login_required&redirect=views/products/detail.php?id=' . $product_id_for_redirect);
