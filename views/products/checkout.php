@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once('../layouts/header.php');
-require_once '../../config/DB.php';
+require_once __DIR__'../layouts/header.php';
+require_once __DIR__'../../config/DB.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../login.php?redirect=checkout');
@@ -207,4 +207,4 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e) {
     }
 });
 </script>
-<?php include_once('../layouts/footer.php'); ?>
+<?php require_once __DIR__'../layouts/footer.php'; ?>
