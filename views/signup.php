@@ -1,7 +1,7 @@
 <?php
-require_once '../config/DB.php';
-require_once '../config/auth.php';
-require_once '../config/functions.php'; 
+require_once __DIR__ '../config/DB.php';
+require_once __DIR__ '../config/auth.php';
+require_once __DIR__ '../config/functions.php'; 
 $errors = [];
 $success = false;
 
@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
         $errors[] = "Erreur de sécurité. Veuillez réessayer.";
     } else {
-        $first_name = sanitize($_POST['first_name']);
+        $first_name = sanitize($_POST['first_name']); 
         $last_name = sanitize($_POST['last_name']);
         $email = sanitize($_POST['email']);
         $password = $_POST['password'];
