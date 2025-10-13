@@ -75,7 +75,7 @@
     </style>
 </head>
 <body>
-    <?php require_once ('views/layouts/header.php')?>
+    <?php require_once __DIR__'views/layouts/header.php';?>
 
     <div class="container">
         <ul class="nav nav-tabs mt-4" role="tablist">
@@ -383,7 +383,7 @@
             <p>Si vous estimez que vos droits n'ont pas été respectés, vous pouvez introduire une réclamation auprès de l'autorité de protection des données compétente de Madagascar.</p>
         </div>
     </div>
-    <?php include_once ('views/layouts/footer.php')?>
+    <?php require_once __DIR__'views/layouts/footer.php'?>
 
     <script>
         function showPage(pageId) {
