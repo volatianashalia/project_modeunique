@@ -40,7 +40,7 @@ try {
     <link rel="stylesheet" href="../../assets/css/product.css">
 </head>
 <body>
-        <?php require_once '../layouts/header.php'; ?>
+        <?php require_once __DIR__ '../layouts/header.php'; ?>
         <main class="container"> 
             <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary" style="background-image:url('../../images/Creaprinci2.jpeg'); background-size:cover; background-repeat:no-repeat;display:flex;justify-content:center;align-items:center;height:400px;"> 
                 <div class="col-lg-6 px-0" style="background-color:rgba(255,255,255,0.5); width:75%;"> 
@@ -75,9 +75,9 @@ try {
         <?php 
         require_once 'list.php';
         ?>
-    <?php require_once '../layouts/newsletter.php'; ?>
-    <?php require_once '../layouts/map.php'; ?>
-    <?php require_once '../layouts/footer.php'; ?>
+    <?php require_once __DIR__'../layouts/newsletter.php'; ?>
+    <?php require_once __DIR__'../layouts/map.php'; ?>
+    <?php require_once __DIR__ '../layouts/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
