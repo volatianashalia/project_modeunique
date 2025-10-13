@@ -3,9 +3,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once '../config/functions.php';
+require_once __DIR__ '../config/functions.php';
 if (isset($_SESSION['user_id']) && file_exists('../config/functions.php')) {
-    require_once '../config/functions.php';
+    require_once __DIR__ '../config/functions.php';
     log_security_event('user_logout', ['user_id' => $_SESSION['user_id']]);
 }
 
