@@ -14,7 +14,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php endif; ?>
-    <?php require_once ('views/layouts/header.php')?>
+    <?php require_once __DIR__ 'views/layouts/header.php'?>
     <main class="container"> 
         <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary" style="background-image:url('images/firstimage.jpg'); background-size:cover;"> 
             <div class="col-lg-6 px-0" style="background-color:rgba(0,0,0,0.5);"> 
@@ -67,11 +67,11 @@
         <h2 style="margin-bottom:5%;"> Nos créations récentes:</h2>
         <div class="row">
             <?php 
-            require_once 'views/creations/list.php';
+           require_once __DIR__ 'views/creations/list.php';
             ?>
         </div>
     </div>
-    <?php require_once 'views/products/category.php';?>
+    <?php require_once __DIR__'views/products/category.php';?>
     <div class="container service" id="services">
         <h2 style="color: #D4AF37; text-align: center; margin-top: 5%; margin-bottom: 3%;">Les services que nous offrons:</h2>
         <div class="row">
@@ -86,11 +86,11 @@
             </div>
         </div>
     </div>
-    <?php require_once 'views/layouts/newsletter.php';?>
-    <?php require_once 'views/layouts/reviews.php';?>
+    <?php require_once __DIR__ 'views/layouts/newsletter.php';?>
+    <?php require_once __DIR__ 'views/layouts/reviews.php';?>
 
-    <?php require_once 'views/layouts/map.php';?>
-    <?php include_once ('views/layouts/footer.php')?>
+    <?php require_once __DIR__ 'views/layouts/map.php';?>
+    <?php require_once __DIR__ 'views/layouts/footer.php';?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
