@@ -1,4 +1,4 @@
-<?php require_once('../layouts/header.php'); ?>
+<?php require_once __DIR__'../layouts/header.php'; ?>
 
 <div class="container" style="margin-top: 50px;">
     <div class="alert alert-success text-center">
@@ -11,4 +11,4 @@
     </div>
 </div>
 
-<?php include_once('../layouts/footer.php'); ?>
+<?php require_once __DIR__'../layouts/footer.php'; ?>
