@@ -550,7 +550,7 @@ $categories = $categoriesStmt->fetchAll();
               <!-- Creation Section -->
             <div class="section" id="creations">
                 <div class="section-header">
-                    <h2>Creations Management</h2>
+                    <h2>Gestion des créations</h2>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCreationModal">
                         <i class="fas fa-plus"></i> Ajouter nouvelle creation
                         </button>
@@ -969,8 +969,7 @@ $categories = $categoriesStmt->fetchAll();
                         </div>
                     </div>
                 </div>
-            </div> 
-            <!-- Appointments Section -->
+            </div>
              <div class="section" id="appointments">
                 <div class="section-header">
                     <h2>Rendez-vous</h2>
@@ -1032,7 +1031,7 @@ $categories = $categoriesStmt->fetchAll();
                             </div>
                             <div class="card-body">
                                 <div id="todaySchedule">
-                                    <!-- Dynamic content will be loaded here -->
+
                                 </div>
                             </div>
                         </div>
@@ -1041,10 +1040,7 @@ $categories = $categoriesStmt->fetchAll();
             </div>
         </main>
     </div>
-     
 
-            <!-- Pour la sécurité, chaque action CRUD devra inclure la vérification CSRF -->
-             <!-- Modal Ajouter Produit -->
             <div class="modal fade" id="addProductModal" tabindex="-1">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">

@@ -396,7 +396,7 @@ function saveClient() {
     $('#addClientModal').modal('hide');
     $('#addClientForm')[0].reset();
     
-    showNotification('Client added successfully!', 'success');
+    showNotification('Client ajouté avec succès !', 'success');
 }
 
 function populateClientSelect() {
@@ -525,7 +525,7 @@ function saveOrder() {
     $('#addOrderModal').modal('hide');
     $('#addOrderForm')[0].reset();
     
-    showNotification('Order added successfully!', 'success');
+    showNotification('Commande ajoutée avec succès !', 'success');
 }
 
 function loadAppointments() {
@@ -583,7 +583,7 @@ function loadTodaySchedule() {
     let html = '';
     
     if (todayAppointments.length === 0) {
-        html = '<p class="text-muted">No appointments scheduled for today.</p>';
+        html = '<p class="text-muted">Aucun rendez-vous programmé pour aujourd\'hui.</p>';
     } else {
         todayAppointments.forEach(appointment => {
             html += `
@@ -622,7 +622,7 @@ function saveAppointment() {
     $('#addAppointmentModal').modal('hide');
     $('#addAppointmentForm')[0].reset();
     
-    showNotification('Appointment scheduled successfully!', 'success');
+    showNotification('Rendez-vous planifié avec succès !', 'success');
 }
 
 
@@ -744,7 +744,7 @@ function saveProduct() {
     $('#addProductModal').modal('hide');
     $('#addProductForm')[0].reset();
     
-    showNotification('Product added successfully!', 'success');
+    showNotification('Produit ajouté avec succès !', 'success');
 }
 
 function getStatusClass(status) {
@@ -787,38 +787,38 @@ function showNotification(message, type = 'success') {
 }
 
 function editClient(clientId) {
-    showNotification('Edit client functionality would be implemented here.', 'info');
+    showNotification("La fonctionnalité de modification du client serait implémentée ici.", 'info');
 }
 
 function deleteClient(clientId) {
-    if (confirm('Are you sure you want to delete this client?')) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) {
         clients = clients.filter(c => c.id !== clientId);
         loadClients();
-        showNotification('Client deleted successfully!', 'success');
+        showNotification('Client supprimé avec succès !', 'success');
     }
 }
 
 function editOrder(orderId) {
-    showNotification('Edit order functionality would be implemented here.', 'info');
+    showNotification("La fonctionnalité de modification de la commande serait implémentée ici.", 'info');
 }
 
 function deleteOrder(orderId) {
-    if (confirm('Are you sure you want to delete this order?')) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')) {
         orders = orders.filter(o => o.id !== orderId);
         loadOrders();
-        showNotification('Order deleted successfully!', 'success');
+        showNotification('Commande supprimée avec succès !', 'success');
     }
 }
 
 function editAppointment(appointmentId) {
-    showNotification('Edit appointment functionality would be implemented here.', 'info');
+    showNotification("La fonctionnalité de modification du rendez-vous serait implémentée ici.", 'info');
 }
 
 function deleteAppointment(appointmentId) {
-    if (confirm('Are you sure you want to delete this appointment?')) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?')) {
         appointments = appointments.filter(a => a.id !== appointmentId);
         loadAppointments();
-        showNotification('Appointment deleted successfully!', 'success');
+        showNotification('Rendez-vous supprimé avec succès !', 'success');
     }
 }
 
