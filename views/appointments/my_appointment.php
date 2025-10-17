@@ -10,7 +10,7 @@ if (!is_logged_in()) {
     exit();
 }
 
-require_once('../layouts/header.php');
+require_once __DIR__'../layouts/header.php';
 
 $user_id = $_SESSION['user_id'];
 $appointments = [];
@@ -301,7 +301,7 @@ $statut_colors = [
         <?php endif; ?>
     </div>
 
-    <?php include_once('../layouts/footer.php'); ?>
+    <?php require_once __DIR__'../layouts/footer.php'; ?>
 
     <script>
         function cancelAppointment(id) {

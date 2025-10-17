@@ -1,6 +1,5 @@
-
 <?php
-require_once '../../config/DB.php';
+require_once __DIR__'../../config/DB.php';
 
 $product = null;
 $product_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -28,7 +27,7 @@ function formatPrice($price) {
 }
 
 
-require_once('../layouts/header.php'); ?>
+require_once __DIR__'../layouts/header.php'; ?>
 
 <div class="container" style="margin-top: 50px;">
     <?php if (!empty($product)): ?>
@@ -86,4 +85,4 @@ require_once('../layouts/header.php'); ?>
     <?php endif; ?>
 </div>
 
-<?php include_once('../layouts/footer.php'); ?>
+<?php require_once __DIR__'../layouts/footer.php'; ?>

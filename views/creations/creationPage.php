@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../assets/css/creation.css">
 </head>
 <body>
-        <?php require_once ('../layouts/header.php')?>
+        <?php require_once __DIR__'../layouts/header.php'?>
 
     <main class="container"> 
         <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary" style="background-image:url('images/Creaprinci2.jpeg'); background-size:cover; background-repeat:no-repeat;display:flex;justify-content:center;align-items:center;height:400px;"> 
@@ -24,7 +24,7 @@
             <h5>Cette section présente un aperçu visuel de nos réalisations. Chaque modèle est conçu avec exigence, du patronage à la finition, pour illustrer notre maîtrise des volumes, des matières et des détails.</h5>
         </div>
         <h2 class="text-center mb-4"  style="color:#D4AF37;margin-bottom:5%">Nos créations</h2>
-        <?php require_once 'list.php';?>
+        <?php require_once __DIR__ 'list.php';?>
     </div>
     <div class="container product_option" style="text-align:center;">
        <h3 style="color:#D4AF37">Vous n'avez pas de temps pour faire une commande sur mesure?</h3><br>
@@ -36,9 +36,9 @@
         </form>
        
     </div>
-        <?php require_once ('../layouts/newsletter.php')?>
-        <?php require_once ('../layouts/map.php')?>
-    <?php include_once ('../layouts/footer.php')?>
+        <?php require_once __DIR__'../layouts/newsletter.php'?>
+        <?php require_once __DIR__'../layouts/map.php'?>
+    <?php require_once __DIR__'../layouts/footer.php'?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

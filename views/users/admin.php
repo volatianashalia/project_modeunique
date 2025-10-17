@@ -1,14 +1,10 @@
  
  <?php
-// Sécurisation du panel admin
-require_once '../../config/DB.php';
-require_once '../../config/auth.php';
-require_once '../../config/functions.php';
-
-// SÉCURITÉ : Démarrer une session sécurisée
+require_once __DIR__'../../config/DB.php';
+require_once __DIR__ '../../config/auth.php';
+require_once __DIR__'../../config/functions.php';
 secure_session_start();
 
-// SÉCURITÉ : Vérifier que l'utilisateur est connecté ET admin
 if (!is_logged_in()) {
     header('Location: ../login.php');
     exit();
@@ -18,11 +14,6 @@ if (!is_admin()) {
     header('Location: ../../index.php');
     exit();
 }
-
-// Log de l'accès admin
-// log_security_event('admin_panel_access', ['user_id' => $_SESSION['user_id']]);
-
-// Générer un token CSRF pour les formulaires
 $csrf_token = generate_csrf_token();
 $clients = [];
 $orders = [];
@@ -36,9 +27,7 @@ $pending_reviews_count = 0;
 $stats = [];
 
 try {
-    // Récupération sécurisée des données
-    
-    // Clients (uniquement les utilisateurs non-admin)
+
     $clientsStmt = $pdo->prepare("
         SELECT id, first_name, last_name, email, status, created_at 
         FROM users 
@@ -48,8 +37,6 @@ try {
     $clientsStmt->execute();
     $clients = $clientsStmt->fetchAll();
 
-    // Commandes avec informations client
-    // Commandes avec informations client - CORRIGÉE
 $ordersStmt = $pdo->prepare("
     SELECT 
         o.id, 
@@ -67,7 +54,7 @@ $ordersStmt = $pdo->prepare("
 ");
 $ordersStmt->execute();
 $orders = $ordersStmt->fetchAll();
-    // Rendez-vous avec informations client
+
     $appointmentsStmt = $pdo->prepare("
         SELECT a.id, a.date, a.time, a.service, a.notes, a.status,
                u.first_name, u.last_name, a.full_name
@@ -78,9 +65,7 @@ $orders = $ordersStmt->fetchAll();
     ");
     $appointmentsStmt->execute();
     $appointments = $appointmentsStmt->fetchAll();
-    
 
-    // Produits avec catégories
     $productsStmt = $pdo->prepare("
         SELECT p.id, p.name, p.description, p.price, p.stock, p.image, p.size,
                c.name as category_name 
@@ -91,7 +76,7 @@ $orders = $ordersStmt->fetchAll();
     $productsStmt->execute();
     $products = $productsStmt->fetchAll();
 
-    // Creations (en supposant une table 'creations')
+
     $creationsStmt = $pdo->prepare("
         SELECT id, title, description, image, created_at
         FROM creations 
@@ -100,7 +85,7 @@ $orders = $ordersStmt->fetchAll();
     $creationsStmt->execute();
     $creations = $creationsStmt->fetchAll();
 
-   // Récupérer toutes les catégories pour les utiliser dans les différentes sections
+
 $categoriesStmt = $pdo->query("
     SELECT c.*, COUNT(p.id) as product_count 
     FROM categories c 
@@ -110,7 +95,6 @@ $categoriesStmt = $pdo->query("
 ");
 $categories = $categoriesStmt->fetchAll();
 
-    // Messages de contact
     $messagesStmt = $pdo->prepare("
         SELECT id, first_name, last_name, email, subject, message, status, created_at
         FROM contact_messages
@@ -119,12 +103,10 @@ $categories = $categoriesStmt->fetchAll();
     $messagesStmt->execute();
     $contact_messages = $messagesStmt->fetchAll();
 
-    // Compter uniquement les nouveaux messages pour le badge
+
     $new_messages_count_stmt = $pdo->query("SELECT COUNT(*) FROM contact_messages WHERE status = 'nouveau'");
     $new_messages_count = $new_messages_count_stmt->fetchColumn();
-    // Statistiques sécurisées
 
-    // Avis clients avec informations utilisateur
     $reviewsStmt = $pdo->prepare("
         SELECT r.id, r.user_id, r.rating, r.review_text, r.is_visible, r.created_at,
                u.first_name, u.last_name
@@ -135,7 +117,6 @@ $categories = $categoriesStmt->fetchAll();
     $reviewsStmt->execute();
     $reviews = $reviewsStmt->fetchAll();
 
-    // Compter les avis en attente
     $pending_reviews_count_stmt = $pdo->query("SELECT COUNT(*) FROM reviews WHERE is_visible = 0");
     $pending_reviews_count = $pending_reviews_count_stmt->fetchColumn();
 
@@ -147,14 +128,11 @@ $categories = $categoriesStmt->fetchAll();
             (SELECT COALESCE(SUM(total_amount), 0) FROM orders WHERE status != 'cancelled') as total_revenue
     ");
     $stats = $statsStmt->fetch();
-    // Fichier config/functions.php (ou où se trouve getImagePath)
+
 
     function getImagePath($imagePath) { 
-        // Si le chemin est vide, externe (http) ou absolu, le retourner tel quel.
         if (empty($imagePath) || strpos($imagePath, 'http') === 0 || $imagePath[0] === '/') {
-            return $imagePath;
-        }
-        // Construire le chemin relatif depuis la page admin.php pour remonter à la racine du projet.
+  
         return '../../' . ltrim($imagePath, '/');
     }
 } catch (Exception $e) {
@@ -275,15 +253,12 @@ $categories = $categoriesStmt->fetchAll();
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Header -->
         <header class="header">
             <div class="header-left">
                 <h1 class="page-title" id="pageTitle">Tableau de bord</h1>
             </div>
             <div class="header-right">
-                <!-- Pop-up des messages -->
                 <div class="dropdown me-3">
                     <button class="btn btn-outline-secondary position-relative" type="button" id="messagesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-envelope"></i>
@@ -322,7 +297,6 @@ $categories = $categoriesStmt->fetchAll();
             </div>
         </header>
 
-        <!-- Dashboard Content -->
         <main class="content" id="mainContent">
             <!-- Dashboard Section -->
             <div class="section active" id="dashboard">
@@ -438,9 +412,6 @@ $categories = $categoriesStmt->fetchAll();
                     </div>
                 </div>
             </div>
-
-            <!-- Les autres sections (clients, orders, etc.) seraient ici -->
-              <!-- Products Section -->
             <div class="section" id="products">
                 <div class="section-header">
                     <h2>Gestion des produits</h2>
@@ -513,41 +484,11 @@ $categories = $categoriesStmt->fetchAll();
                                     </div>
                                 </div>
                             <?php endforeach; ?>
-                            <!-- Dynamic content will be loaded here -->
-                            <!-- <?php foreach ($products as $product): ?>
-                                <div class="col-md-4 mb-4">
-                                    <div class="card h-100">
-                                        <img src="<?= getImagePath(htmlspecialchars($product['image'])) ?>" class="card-img-top" alt="<?= htmlspecialchars($product['name']) ?>" style="height:200px; object-fit:cover;">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
-                                            <p class="card-text"><?= htmlspecialchars(mb_strimwidth($product['description'], 0, 80, '...')) ?></p>
-                                            <p><strong><?= htmlspecialchars($product['size']) ?></strong></p>
-                                            <p><strong><?= number_format($product['price'], 2) ?> Ariary</strong></p>
-                                            <p>Stock: <?= htmlspecialchars($product['stock']) ?></p>
-                                        </div>
-                                        <div class="card-footer text-end"> -->
-                                            <!-- Bouton Modifier -->
-                                            <!-- <button class="btn btn-sm btn-warning editProduct" 
-                                                    data-id="<?= $product['id'] ?>" 
-                                                    data-bs-toggle="modal" 
-                                                    data-bs-target="#editProductModal">
-                                                <i class="fas fa-edit"></i>
-                                            </button> -->
-
-                                            <!-- Bouton Supprimer -->
-                                            <!-- <button class="btn btn-sm btn-danger deleteProduct" 
-                                                    data-id="<?= $product['id'] ?>">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?> -->
+      
                         </div>
                     </div>
                 </div>
             </div>
-              <!-- Creation Section -->
             <div class="section" id="creations">
                 <div class="section-header">
                     <h2>Gestion des créations</h2>
@@ -575,7 +516,7 @@ $categories = $categoriesStmt->fetchAll();
                                             <p class="card-text"><?= htmlspecialchars(mb_strimwidth($creation['description'], 0, 80, '...')) ?></p>
                                         </div>
                                         <div class="card-footer text-end">
-                                            <!-- Bouton Modifier -->
+
                                             <button class="btn btn-sm btn-warning editCreation" 
                                                     data-id="<?= $creation['id'] ?>" 
                                                     data-bs-toggle="modal" 
@@ -583,7 +524,6 @@ $categories = $categoriesStmt->fetchAll();
                                                 <i class="fas fa-edit"></i>
                                             </button>
 
-                                            <!-- Bouton Supprimer -->
                                             <button class="btn btn-sm btn-danger deleteCreation" 
                                                     data-id="<?= $creation['id'] ?>">
                                                 <i class="fas fa-trash-alt"></i>
@@ -596,7 +536,7 @@ $categories = $categoriesStmt->fetchAll();
                     </div>
                 </div>
             </div>
-           <!-- AJOUTER CETTE SECTION DANS VOTRE ADMIN.PHP APRÈS LA SECTION PRODUCTS -->
+
             <div class="section" id="categories">
                 <div class="section-header">
                     <h2>Gestion des catégories</h2>
@@ -679,7 +619,6 @@ $categories = $categoriesStmt->fetchAll();
                 </div>
             </div>
 
-            <!-- Reviews Section -->
             <div class="section" id="reviews">
                 <div class="section-header">
                     <h2>Gestion des avis clients</h2>
@@ -743,7 +682,7 @@ $categories = $categoriesStmt->fetchAll();
                 </div>
             </div>
 
-            <!-- Messages Section -->
+
             <div class="section" id="messages">
                 <div class="section-header">
                     <h2>Messages de Contact</h2>
@@ -800,8 +739,6 @@ $categories = $categoriesStmt->fetchAll();
                 </div>
             </div>
 
-            <!-- Orders Section -->
-             
 <div class="section" id="orders">
     <div class="section-header">
         <h2>Gestion des commandes</h2>
@@ -914,7 +851,7 @@ $categories = $categoriesStmt->fetchAll();
     </div>
 </div>
             
-              <!-- Clients Section -->
+
           <div class="section" id="clients">
                 <div class="section-header">
                     <h2>Tous les clients</h2>
@@ -969,7 +906,12 @@ $categories = $categoriesStmt->fetchAll();
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
             </div>
+=======
+            </div> 
+
+>>>>>>> 0b730f7ae18d8c09840bb0cdb7340fc172ffe73e
              <div class="section" id="appointments">
                 <div class="section-header">
                     <h2>Rendez-vous</h2>
@@ -1040,7 +982,11 @@ $categories = $categoriesStmt->fetchAll();
             </div>
         </main>
     </div>
+<<<<<<< HEAD
 
+=======
+     
+>>>>>>> 0b730f7ae18d8c09840bb0cdb7340fc172ffe73e
             <div class="modal fade" id="addProductModal" tabindex="-1">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -1134,7 +1080,6 @@ $categories = $categoriesStmt->fetchAll();
                 </div>
             </div>
 
-           <!-- Modal Modifier Produit -->
                 <div class="modal fade" id="editProductModal" tabindex="-1">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -1216,8 +1161,6 @@ $categories = $categoriesStmt->fetchAll();
                         </div>
                     </div>
                 </div>
-                  <!-- Modal Ajouter creation -->
-                   <!-- Modal Ajouter création -->
 <div class="modal fade" id="addCreationModal" tabindex="-1" aria-labelledby="addCreationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -1249,7 +1192,7 @@ $categories = $categoriesStmt->fetchAll();
         </div>
     </div>
 </div>
-               <!-- Modal Modifier Creation -->
+
 <div class="modal fade" id="editCreationModal" tabindex="-1" aria-labelledby="editCreationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -1284,7 +1227,6 @@ $categories = $categoriesStmt->fetchAll();
     </div>
 </div>
                
-             <!-- Modal Ajouter Catégorie -->
             <div class="modal fade" id="addCategoryModal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1314,37 +1256,8 @@ $categories = $categoriesStmt->fetchAll();
                 </div>
             </div>
 
-            <!-- Modal Modifier Catégorie -->
-            <!-- <div class="modal fade" id="editCategoryModal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Modifier la catégorie</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <form id="editCategoryForm">
-                            <div class="modal-body">
-                                <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
-                                <input type="hidden" name="id" id="editCategoryId">
-                                <div class="mb-3">
-                                    <label class="form-label">Nom de la catégorie <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="editCategoryName" required>
-                                </div>
-                                <div class="mb-3">
-                                        <label class="form-label">Image du produit (optionnel)</label>
-                                        <input type="file" class="form-control" name="image" accept="image/*">
-                                        <small class="text-muted">Laissez vide pour conserver l'image actuelle</small>
-                                    </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                <button type="submit" class="btn btn-primary">Modifier</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>          -->
-            <!-- Modal Modifier Catégorie -->
+
+         
 <div class="modal fade" id="editCategoryModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1391,7 +1304,6 @@ $categories = $categoriesStmt->fetchAll();
     </div>
 </div>
 
-<!-- Modal Voir Message -->
 <div class="modal fade" id="viewMessageModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -1421,10 +1333,9 @@ $categories = $categoriesStmt->fetchAll();
         </main>
     </div>
 
-    <!-- Token CSRF pour les formulaires JavaScript -->
     <script>
         window.csrfToken = '<?php echo $csrf_token; ?>';
-        // Passer les données PHP à JavaScript pour éviter les appels AJAX initiaux
+
         <?php
             $js_clients = [];
             foreach ($clients as $client) {
@@ -1446,11 +1357,11 @@ $categories = $categoriesStmt->fetchAll();
         };
     </script>
 
-    <!-- Bootstrap JS -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery -->
+
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <!-- Custom JS -->
+
     <script src="../../assets/js/admin.js"></script>
     <script>
 document.addEventListener('DOMContentLoaded', function() {

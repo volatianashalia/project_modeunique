@@ -1,15 +1,11 @@
 <?php
-// Le header.php démarre déjà la session et inclut les fichiers nécessaires.
-require_once('../layouts/header.php');
+require_once __DIR__'../layouts/header.php';
 
-// 1. Vérifier si l'utilisateur est connecté
 if (!is_logged_in()) {
-    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
     header('Location: ../login.php?redirect=profile');
     exit();
 }
 
-// 2. Récupérer les informations de l'utilisateur depuis la base de données
 $user = null;
 try {
     $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
@@ -44,4 +40,4 @@ try {
     </div>
 </div>
 
-<?php include_once('../layouts/footer.php'); ?>
+<?php require_once __DIR__'../layouts/footer.php'; ?>

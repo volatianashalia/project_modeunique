@@ -11,7 +11,7 @@ function getImagePath($imagePath) {
     return '../../' . $imagePath;
 }
 
-require_once('../layouts/header.php'); 
+require_once __DIR__'../layouts/header.php'; 
 ?>
 
 <div class="container" style="margin-top: 50px;">

@@ -1,5 +1,5 @@
 <?php
-require 'DB.php';
+require_once __DIR__ 'DB.php';
 header('Content-Type: application/json');
 
 

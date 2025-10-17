@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../../config/DB.php';
-require_once '../../config/auth.php';
+require_once __DIR__ '../../config/DB.php';
+require_once __DIR__ '../../config/auth.php';
 
 header('Content-Type: application/json');
 if (!is_logged_in()) {

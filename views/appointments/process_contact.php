@@ -1,6 +1,6 @@
 <?php
-require_once '../../config/DB.php';
-require_once '../../config/functions.php'; 
+require_once __DIR__ '../../config/DB.php';
+require_once __DIR__ '../../config/functions.php'; 
 
 error_reporting(E_ALL);
 ini_set('display_errors', 0);

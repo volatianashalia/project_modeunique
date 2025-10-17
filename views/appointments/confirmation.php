@@ -7,7 +7,7 @@ if (!is_logged_in()) {
     exit();
 }
 
-require_once('../layouts/header.php');
+require_once __DIR__ '../layouts/header.php';
 
 $user_id = $_SESSION['user_id'];
 $appointment = null;
@@ -165,7 +165,7 @@ try {
         </div>
     </div>
 
-    <?php include_once('../layouts/footer.php'); ?>
+    <?php require_once __DIR__'../layouts/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

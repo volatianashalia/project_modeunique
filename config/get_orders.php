@@ -1,6 +1,6 @@
 <?php
-require_once 'DB.php';
-require_once 'auth.php';
+require_once __DIR__ 'DB.php';
+require_once __DIR__ 'auth.php';
 
 secure_session_start();
 

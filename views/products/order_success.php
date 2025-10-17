@@ -4,7 +4,7 @@ if (!isset($_SESSION['order_success'])) {
     header('Location: productPage.php');
     exit();
 }
-require_once('../layouts/header.php');
+require_once __DIR__'../layouts/header.php';
 $order_data = $_SESSION['order_success'];
 unset($_SESSION['order_success']);
 ?>
@@ -109,4 +109,4 @@ unset($_SESSION['order_success']);
     </div>
 </div>
 
-<?php include_once('../layouts/footer.php'); ?>
+<?php require_once __DIR__'../layouts/footer.php'; ?>
