@@ -62,7 +62,7 @@ Accédez à http://localhost/phpmyadmin
 Créez une base de données: mode_unique
 Importez le fichier database.sql fourni avec le projet pour générer les tables.
 Ouvrez config/DB.php et ajustez les paramètres de connexion :
-<?php
+
 $host = 'localhost';
 $dbname = 'modeunique_db'; // Nom de votre base de données
 $user = 'root';
@@ -95,11 +95,11 @@ Profil GitHub:https://github.com/volatianashalia;
 ### Licence
 Ce projet est sous licence MIT — libre d’utilisation et de modification.
 
-###Tests / Déploiement
+### Tests / Déploiement
 Testé en local avec WAMP
 Déployable sur n’importe quel hébergement PHP/MySQL
 
-###Captures d'écran
+### Captures d'écran
 ![Page d'accueil](images/screenshots/page_d'accueil.png)
 ![Galerie des créations](images/screenshots/creation_gallery.png)
 ![Les catégories](images/screenshots/Gallery.png)
